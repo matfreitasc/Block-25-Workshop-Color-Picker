@@ -1,15 +1,41 @@
-// Write your Color component here
+import Color from './components/color'
+import { useEffect, useState } from 'react'
 
 const App = () => {
-  return (
-    <div id="container">
-      <div id="navbar">
-        <div>Currently selected: </div>
-        <div className="red">red</div>
-      </div>
-      <div id="colors-list">{/* colors go here */}</div>
-    </div>
-  );
-};
+	const [selectedColor, setSelectedColor] = useState(
+		localStorage.getItem('selectedColor') || 'red'
+	)
 
-export default App;
+	useEffect(() => {
+		// saving the selected color to local storage
+		localStorage.setItem('selectedColor', selectedColor)
+	}, [selectedColor])
+
+	return (
+		<div id='container'>
+			<div id='navbar'>
+				<div>Currently selected: </div>
+				<div className={selectedColor}>{selectedColor}</div>
+			</div>
+			<div id='colors-list'>
+				<Color
+					color='red'
+					setSelectedColor={setSelectedColor}
+					selectedColor={selectedColor}
+				/>
+				<Color
+					color='blue'
+					setSelectedColor={setSelectedColor}
+					selectedColor={selectedColor}
+				/>
+				<Color
+					color='green'
+					setSelectedColor={setSelectedColor}
+					selectedColor={selectedColor}
+				/>
+			</div>
+		</div>
+	)
+}
+
+export default App
