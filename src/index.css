@@ -48,7 +48,7 @@ body {
   width: 100px;
   border-radius: 50%;
   margin-top: 40px;
-  transition: background-color 1s ease-in-out 0s;
+  transition: background-color 1s ease-in-out;
 }
 
 .selected {
